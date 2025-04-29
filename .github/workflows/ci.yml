@@ -82,10 +82,6 @@ jobs:
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         run: |
           rm -f packages/*
-          make clean
-          make package FINALPACKAGE=1 TARGET=iphone:clang:latest ARCHS=arm64 THEOS_PACKAGE_SCHEME=rootless
-          mv packages/*.deb packages/kbsynctool_rootless.deb
-          make clean
           make package _THEOS_DARWIN_CAN_USE_MODULES=0 FINALPACKAGE=1
       
       - name: Publish artifact
